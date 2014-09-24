@@ -7,7 +7,7 @@ class UserTableSeeder extends Seeder {
   **/
   public function run() {
 
-    DB::table('users')->delete();
+    
 
     $faker = Faker\Factory::create();
 
