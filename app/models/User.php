@@ -31,7 +31,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->password;
 	}
 
-	public function roles() {
+    /*public function name() {
+        return $this->first_name . ' '. $this->last_name;
+    }*/
+
+	/*** Roles ***/
+
+    public function roles() {
 		return $this->belongsToMany('Role')->withTimestamps();
 	}
 
@@ -51,5 +57,30 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function removeRole($role) {
 		return $this->roles()->detach($role);
 	}
+
+
+    /*** projects ***/
+
+    public function projects() {
+      return $this->belongsToMany('Project')->withTimestamps();
+    }
+
+    public function hasProject($name) {
+        foreach($this->projects as $project) {
+            if($project->client_name == $name) return true;
+
+        }
+
+        return false;
+    }
+
+    public function assignProject($project) {
+        return $this->projects()->attach($project);
+    }
+
+
+    public function removeProject($project) {
+        return $this->projects()->detach($project);
+    }
 
 }

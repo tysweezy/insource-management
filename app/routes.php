@@ -11,6 +11,11 @@
 |
 */
 
+
+
+
+
+
 /**
  * Unauthenticated groups
  */
@@ -50,9 +55,7 @@ Route::group(array('before' => 'guest'), function(){
    'uses'  => 'AccountController@getLogin'
  ));
 
-
-
-  /**
+    /**
    * Login (POST)
   **/
  Route::post('account/login', array(
@@ -91,7 +94,6 @@ Route::group(array('before' => 'guest'), function(){
 
 });
 
-
 /**
   * Authenticated Groups
 **/
@@ -117,13 +119,22 @@ Route::group(array('before' => 'auth'), function() {
       ));
   });
 
-  Route::get('/', function()
-  {
-    
-    $user = User::all();
 
-    return View::make('home')->with('user', $user);
-  });
+  Route::get('/', array(
+      'as'     => 'home',
+      'uses'   => 'ProjectController@index'
+  ));
+
+  /**
+   * Assign project -- before('role:admin')
+   */
+
+
+
+  Route::post('/assign', array(
+     'as'   => 'project-assign-post',
+     'uses' => 'ProjectController@postAssign'
+  ));
 
   Route::get('logout', array(
    'as'   => 'account-logout',
@@ -137,7 +148,6 @@ Route::group(array('before' => 'auth'), function() {
     'as'     => 'account-change-password',
     'uses'   => 'AccountController@getChangePassword'
   ));
-
 
   /**
     * Applcation Routes
@@ -157,8 +167,58 @@ Route::group(array('before' => 'auth'), function() {
     'uses'     => 'ProfileController@edit'
   ));
 
-  /*Route::get('/admin', function() {
-    return User::first()->roles->first()->name;
-  })->before('role:employee');*/
+    /***
+     * Administrator group
+     */
+
+    Route::group(array('before' => 'role:admin'), function() {
+
+        Route::get('/admin', function () {
+
+            $users    = User::all();
+            $projects = Project::all();
+
+            return View::make('project.admin')
+                    ->with('users', $users)
+                    ->with('projects', $projects);
+        });
+
+        /**
+         * Create project -- GET
+         */
+
+        Route::get('/admin/project/create', array(
+            'as'     => 'project-create',
+            'uses'   => 'ProjectController@create'
+        ));
+
+
+
+       Route::group(array('before' => 'csrf'), function() {
+           /***
+            * Store Project -- POST
+            */
+
+           Route::post('/admin/project/create', array(
+               'as' => 'project-store',
+               'uses' => 'ProjectController@store'
+           ));
+
+       });
+
+
+
+
+        /***
+         * Assign project
+         */
+
+
+        Route::get('/admin/assign', array(
+            'as'    => 'project-assign',
+            'uses'  => 'ProjectController@assign'
+        ));
+
+    });
 
 });

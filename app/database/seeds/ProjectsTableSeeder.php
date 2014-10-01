@@ -25,7 +25,7 @@ class ProjectsTableSeeder extends Seeder {
               'complexity'        => $faker->word,
               'department'        => $faker->word,
               'notes'             => $faker->sentence,
-              'qa_name'           => $faker->name,
+              'qa_name'           => '',
               'hours_spent'       => $faker->randomDigitNotNull,
               'number_of_changes' => $faker->randomDigitNotNull,
               'hours_on_changes'  => $faker->randomDigitNotNull,

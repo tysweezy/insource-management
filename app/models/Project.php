@@ -6,5 +6,8 @@ class Project extends Eloquent {
 
   protected $table = 'projects';
 
-  //protected $fillable = ['request_month'];
+  public function user() {
+      return $this->belongsTo('User');
+  }
+
 }

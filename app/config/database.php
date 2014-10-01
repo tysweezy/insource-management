@@ -54,14 +54,13 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '127.0.0.1',
+			'host'      => 'localhost',
 			'database'  => 'insource_management',
 			'username'  => 'homestead',
 			'password'  => 'secret',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
-			'port'      => '33060'
+			'prefix'    => ''
 		),
 
 		'pgsql' => array(

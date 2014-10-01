@@ -6,6 +6,11 @@
   <div class="col-lg-12">
     <h1 class="page-header">Edit Profile</h1>
 
+
+    <h2><img class="img-circle" src="//www.gravatar.com/avatar/{{ md5(Auth::user()->email)  }}" alt="{{ Auth::user()->username  }}"/>
+      {{ e($user->first_name) }} {{ e($user->last_name)  }}
+    </h2>
+
         @if(Session::has('global'))
           {{ Session::get('global') }}
 
@@ -37,7 +42,7 @@
         {{ Form::file('profile_image') }}
       </div>
 
-      {{ Form::submit('Update Profile', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Update Profile', array('class' => 'btn btn-primary')) }}
     {{ Form::close() }}
 
   </div>

@@ -9,8 +9,6 @@ class ProfileTest extends TesCase {
 
   public function profileRouteTest() {
 
-
-
   }
 
 }
