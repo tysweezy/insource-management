@@ -219,4 +219,38 @@ class AccountController extends BaseController {
        return Redirect::route('account-change-password')
                ->with('global', 'Could not recover your account.');
   }
+
+  /***
+   * Show list of of projects
+   * GET -- /user/{username}/projects
+   */
+
+    public function projectList($username) {
+       // $user = User::find(34)->projects;
+
+        $user = User::where('username', '=', $username);
+
+        if ($user->count()) {
+
+            $projects = $user->first()->projects;
+
+            return View::make('project.show')->with('projects', $projects);
+
+            /*foreach($user->first()->projects as $project) {
+                echo $project->id . '<br/>' . $project->client_name . '<hr />';
+
+            }*/
+
+        }
+
+
+
+
+
+
+
+
+
+
+    }
 }

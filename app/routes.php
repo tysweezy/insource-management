@@ -167,6 +167,23 @@ Route::group(array('before' => 'auth'), function() {
     'uses'     => 'ProfileController@edit'
   ));
 
+
+    Route::get('/user/{username}/projects', array(
+        'as'   => 'user-projects',
+        'uses' => 'AccountController@projectList'
+    ));
+
+
+    /**
+     * Edit project
+     */
+
+    Route::get('/project/{id}/edit', array(
+        'as'     => 'project-edit',
+        'uses'   => 'ProjectController@edit'
+    ));
+
+
     /***
      * Administrator group
      */
@@ -176,7 +193,7 @@ Route::group(array('before' => 'auth'), function() {
         Route::get('/admin', function () {
 
             $users    = User::all();
-            $projects = Project::all();
+            $projects = Project::paginate(20);
 
             return View::make('project.admin')
                     ->with('users', $users)
@@ -191,6 +208,8 @@ Route::group(array('before' => 'auth'), function() {
             'as'     => 'project-create',
             'uses'   => 'ProjectController@create'
         ));
+
+
 
 
 

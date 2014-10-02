@@ -11,20 +11,10 @@ class ProjectController extends \BaseController {
 	public function index()
     {
 
-        $users = User::all();
+        //$users = User::paginate(5);
 
-        //$user = User::with('Project');
 
-        $projects = Project::all();
-
-        /*foreach($users as $user) {
-            return $user->projects;
-        }*/
-
-        /*foreach($projects as $project) {
-            return $project->user;
-        }*/
-
+        $users = User::orderBy('assigned_task_count', 'ASC')->paginate(5);
 
 
         return View::make('home')->with('users', $users);
@@ -149,6 +139,7 @@ class ProjectController extends \BaseController {
 	public function show($id)
 	{
 
+
 	}
 
 	/**
@@ -160,7 +151,13 @@ class ProjectController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$project = Project::where('id', '=', $id);
+
+        if ($project->count()) {
+            $project->first();
+
+            return View::make('project.edit')->with('project', Project::find($id));
+        }
 	}
 
 	/**

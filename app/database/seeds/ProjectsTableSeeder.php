@@ -12,7 +12,7 @@ class ProjectsTableSeeder extends Seeder {
 
 		$faker = Faker::create();
 
-		foreach(range(1, 300) as $index)
+		foreach(range(1, 25) as $index)
 		{
 			Project::create([
               'requested_month'   => $faker->monthName,

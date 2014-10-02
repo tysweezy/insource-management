@@ -28,7 +28,7 @@
 
     <div class="tab-content">
       <div class="tab-pane active in" id="qa">
-        <table class="table">
+        <table class="table table-striped">
           <thead>
             <tr>
               <th></th>
@@ -75,7 +75,7 @@
        @if ($projects->count() == 0)
          <br/><p>Not a single project exists. You can create one by clicking the Create Project button.</p>
        @else
-        <table class="table" style="font-size: .9em;">
+        <table class="table table-striped" style="font-size: .9em;">
           <thead>
             <tr>
               <th>Month</th>
@@ -83,16 +83,11 @@
               <th>Client</th>
               <th>Number</th>
               <th>Status</th>
-              <th>Question Count</th>
               <th>Type</th>
               <th>Complexity</th>
               <th>Department</th>
-              <th>Notes</th>
-              <th>QA Name</th>
-              <th>Hrs. Spent</th>
-              <th># of Changes</th>
-              <th>Hrs. On Changes</th>
-              <th>OT Hours</th>
+
+
             </tr>
           </thead>
 
@@ -104,25 +99,20 @@
                 <td>{{ $p->client_name }}</td>
                 <td>{{ $p->project_number }}</td>
                 <td>{{ $p->project_status }}</td>
-                <td>{{ $p->question_count }}</td>
                 <td>{{ $p->request_type }}</td>
                 <td>{{ $p->complexity }}</td>
                 <td>{{ $p->department }}</td>
-                <td>{{ $p->notes }}</td>
-                <td>{{ $p->qa_name }}</td>
-                <td>{{ $p->hours_spent }}</td>
-                <td>{{ $p->number_of_changes  }}</td>
-                <td>{{ $p->hours_on_changes }}</td>
-                <td>{{ $p->ot_hours }}</td>
-                <td><a href="#">Edit</a></td>
+
+                <td><a href="/project/{{ $p->id }}/edit">Edit</a></td>
                 <td><a href="#">Delete</a></td>
+                <td><a href="">More Info</a></td>
               </tr>
 
 
             @endforeach
           </thead>
         </table>
-
+             {{ $projects->links() }}
         @endif
       </div>
 

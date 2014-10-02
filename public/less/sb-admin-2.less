@@ -25,6 +25,10 @@ body.account-body {
     background-color: white;
 }
 
+h1 {
+  color: #999;
+}
+
 
 /*** custom styles ***/
 input#main-search {
@@ -193,6 +197,71 @@ li.dropdown a {
 .sidebar .nav-third-level li a {
     padding-left: 52px;
 }
+
+.overview-panel {
+  background: #e5e5e5;
+  border-bottom: 4px solid #dadada;
+  padding: 15px;
+  .round-corners(3px);
+  margin: 10px 0;
+}
+
+.users-name {
+  font-size: 2em;
+  font-weight: bold;
+  color: #aaa;
+  margin-left: 10px;
+  margin-top: 5px;
+
+}
+
+.overview-actions {margin-top: 15px;}
+
+.available {
+  background: #98A320;
+  padding: 5px;
+  color: #fff;
+  border: 1px solid #909B1F;
+  .round-corners(3px);
+  margin-left: 25px;
+  text-shadow: 0 0px 1px #999;
+}
+
+
+.booked {
+  background: #9D0B0E;
+  padding: 5px;
+  color: #fff;
+  border: 1px solid #880C11;
+  .round-corners(3px);
+  margin-left: 25px;
+  text-shadow: 0 0px 1px #999;
+}
+
+
+.button-green {
+  background: #C2D323;
+  padding: 10px;
+  color: #fff;
+  text-shadow: 0 0 1px #999;
+
+  border-bottom: 2px solid #B2B86A;
+
+  &:hover {color: #fff; opacity: .8}
+
+}
+
+.button-blue {
+  background: #089495;
+  padding: 10px;
+  color: #fff;
+  text-shadow: 0 0 1px #999;
+
+  border-bottom: 2px solid #148484;
+
+  &:hover {color: #fff; opacity: .8}
+}
+
 
 @media(min-width:768px) {
     .sidebar {
