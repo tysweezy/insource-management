@@ -49,6 +49,23 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
+
+    /*switch($code) {
+        case 403:
+            return '403 error';
+
+        case 404:
+            return '404 error';
+
+        case 500:
+            return '500 error';
+
+        default:
+            return 'default error';
+
+
+    }*/
+
 });
 
 /*
@@ -66,6 +83,9 @@ App::down(function()
 {
 	return Response::make("Be right back!", 503);
 });
+
+
+
 
 /*
 |--------------------------------------------------------------------------

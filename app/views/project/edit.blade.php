@@ -27,6 +27,30 @@
 
 
 
+             {{ Form::label('question_count', 'Question Count') }}
+             {{ Form::text('question_count', null, array('class' => 'form-control')) }}
+
+
+             {{ Form::label('department', 'Department')  }}
+             {{ Form::text('department', null, array('class' => 'form-control')) }}
+
+
+             {{ Form::label('hours_spent', 'Hours Spent') }}
+             {{ Form::text('hours_spent', null, array('class' => 'form-control')) }}
+
+             {{ Form::label('number_of_changes', 'Number of Changes') }}
+             {{ Form::text('number_of_changes', null, array('class' => 'form-control'))  }}
+
+             {{ Form::label('hours_on_changes', 'Hours on Changes') }}
+             {{ Form::text('hours_on_changes', null, array('class' => 'form-control')) }}
+
+
+             {{ Form::label('ot_hours', 'OT Hours') }}
+             {{ Form::text('ot_hours', null, array('class' => 'form-control')) }}
+
+             {{ Form::submit("Edit Project", array('class' => 'btn btn-primary'))  }}
+
+
 
          {{ Form::close() }}
 

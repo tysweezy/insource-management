@@ -10,10 +10,6 @@ class ProjectController extends \BaseController {
 	 */
 	public function index()
     {
-
-        //$users = User::paginate(5);
-
-
         $users = User::orderBy('assigned_task_count', 'ASC')->paginate(5);
 
 
@@ -23,18 +19,30 @@ class ProjectController extends \BaseController {
 
     /**
      * Assign project page.
-     * GET /assign
+     * GET /assign/user/{id}
      *
      * @return Response
      */
-    public function assign() {
+    public function assign($user) {
+        $user = User::where('id', '=', $user);
 
-        $users = User::lists('first_name');
-        $projects = Project::lists('client_name');
+        if($user->count()) {
+            $user = $user->first();
 
-        // user/project query
+            //return 'assign project';
 
-        return View::make('project.assign')->with('users', $users)->with('projects', $projects);
+            //return $user;
+
+            //$users = User::lists('first_name');
+            $projects = Project::lists('client_name');
+            return View::make('project.assign')->with('user', $user)->with('projects', $projects);
+        }
+
+
+
+
+
+
     }
 
     public function postAssign() {
@@ -54,10 +62,9 @@ class ProjectController extends \BaseController {
 
             // assign project to user
 
+            $user = User;
 
-           /*$user     = Input::get('user');
-           $project  = Input::get('project');
-            $user->assignProject($project);*/
+            $user->assignRole(Input::get('project'));
 
         }
 

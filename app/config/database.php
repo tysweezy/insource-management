@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'pgsql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -65,10 +65,10 @@ return array(
 
 		'pgsql' => array(
 			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'forge',
-			'username' => 'forge',
-			'password' => '',
+			'host'     => 'ec2-54-243-42-236.compute-1.amazonaws.com',
+			'database' => 'd5i17o0jluajp9',
+			'username' => 'kqhebutfqyevep',
+			'password' => 'MXyTtWLZtqmJIQ3zUwY9d3JdHT',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',

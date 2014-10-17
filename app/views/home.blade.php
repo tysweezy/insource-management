@@ -30,7 +30,7 @@
                         <div class="overview-actions pull-right">
 
                          @if(Auth::user()->hasRole('admin'))
-                          <a href="" class="btn button-green">Assign Project</a>
+                          <a href="/assign/user/{{$user->id}}" class="btn button-green">Assign Project</a>
                           @endif
                           <a href="/user/{{$user->username}}/projects" class="btn button-blue">View Projects</a>
                         </div>

@@ -12,10 +12,6 @@
 */
 
 
-
-
-
-
 /**
  * Unauthenticated groups
  */
@@ -210,9 +206,6 @@ Route::group(array('before' => 'auth'), function() {
         ));
 
 
-
-
-
        Route::group(array('before' => 'csrf'), function() {
            /***
             * Store Project -- POST
@@ -223,17 +216,20 @@ Route::group(array('before' => 'auth'), function() {
                'uses' => 'ProjectController@store'
            ));
 
+
+           Route::post('/assign/user/{id}', array(
+               'as'    => 'project-assign-post',
+               'uses'  => 'ProjectController@postAssign'
+           ));
+
        });
 
-
-
-
         /***
-         * Assign project
+         * Assign project -- based on user id
          */
 
 
-        Route::get('/admin/assign', array(
+        Route::get('/assign/user/{id}', array(
             'as'    => 'project-assign',
             'uses'  => 'ProjectController@assign'
         ));

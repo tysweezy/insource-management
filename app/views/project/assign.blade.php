@@ -1,7 +1,5 @@
 @extends('layouts.default')
 
-
-
 @section('content')
 
 <div class="row">
@@ -14,17 +12,12 @@
           @endforeach
         </ul>
 
-     {{ Form::open()  }}
+     {{ Form::open(['route' => 'project-assign-post', $user->id])  }}
 
        <div class="input-group">
-           {{ Form::label('user', 'User') }}
+           <strong>User</strong>
 
-          <select name="user" id="user" class="form-control">
-
-           @foreach($users as $u)
-            <option value="{{ $u }}">{{ $u }}</option>
-           @endforeach
-          </select>
+           <p>{{ $user->first_name }} {{ $user->last_name }}</p>
        </div>
 
      <div class="input-group">
