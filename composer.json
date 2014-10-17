@@ -9,7 +9,6 @@
         "fzaninotto/faker": "dev-master"
 	},
 	"require-dev": {
-      "fzaninotto/faker": "dev-master",
       "codeception/codeception": "~2.0"
 	},
 	"autoload": {
