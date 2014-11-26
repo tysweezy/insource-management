@@ -12,7 +12,7 @@
           @endforeach
         </ul>
 
-     {{ Form::open(['route' => 'project-assign-post', $user->id])  }}
+     {{ Form::open(['route' => ['project-assign-post', $user->id]])  }}
 
        <div class="input-group">
            <strong>User</strong>
@@ -24,7 +24,7 @@
        {{ Form::label('project', 'Project')  }}
        <select name="project" id="project" class="form-control">
           @foreach($projects as $p)
-            <option value="{{ $p }}">{{ $p  }}</option>
+            <option value="{{ $p->id }}">{{ $p->client_name  }}</option>
           @endforeach
        </select>
      </div>
@@ -35,7 +35,7 @@
        {{ Form::submit('Assign Project', array('class' => 'btn btn-primary'))  }}
      </div>
 
-     {{ Form::close()   }}
+     {{ Form::close()  }}
 
   </div>
  </div>

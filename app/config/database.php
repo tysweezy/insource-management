@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'pgsql',
+	'default' => 'mysql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return array(
 		),
 
 		'pgsql' => array(
-			'driver'   => 'pgsql',
+			'driver'   => 'mysql',
 			'host'     => 'ec2-54-243-42-236.compute-1.amazonaws.com',
 			'database' => 'd5i17o0jluajp9',
 			'username' => 'kqhebutfqyevep',

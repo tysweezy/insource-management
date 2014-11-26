@@ -9,7 +9,11 @@ class ProfileController extends BaseController {
     if ($user->count()) {
       $user = $user->first();
 
-      return View::make('profile.user')->with('user', $user);
+        $projects = $user->projects;
+
+      return View::make('profile.user')
+               ->with('user', $user)
+               ->with('projects', $projects);
     }
 
       return App::abort(404);

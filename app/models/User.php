@@ -30,6 +30,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getAuthPassword() {
 		return $this->password;
 	}
+     
+     
 
 	/*** Roles ***/
 
@@ -44,7 +46,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
       return false;
 	}
-
 
 	public function assignRole($role) {
 		return $this->roles()->attach($role);
@@ -78,5 +79,4 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function removeProject($project) {
         return $this->projects()->detach($project);
     }
-
 }

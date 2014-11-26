@@ -57,7 +57,7 @@
                 <td>{{ $u->email }}</td>
                 <td>{{ $u->assigned_task_count }}</td>
                 <td>{{ $u->shift_hours }}</td>
-                <td><a href="#" class="btn btn-warning">Edit</a></td>
+                <td><a href="admin/user/{{$u->id}}/edit" class="btn btn-warning">Edit</a></td>
 
               </tr>
 

@@ -16,6 +16,14 @@ class ProjectController extends \BaseController {
         return View::make('home')->with('users', $users);
 	}
 
+    
+    /**
+      * Display all projects -- project overview
+      * @return Response
+    **/
+    public function all() {
+        return "Projects page";
+    }
 
     /**
      * Assign project page.
@@ -23,51 +31,59 @@ class ProjectController extends \BaseController {
      *
      * @return Response
      */
-    public function assign($user) {
-        $user = User::where('id', '=', $user);
+    public function assign($id) {
+        $user = User::where('id', '=', $id);
 
         if($user->count()) {
             $user = $user->first();
 
-            //return 'assign project';
+            $projects = Project::all();
 
-            //return $user;
-
-            //$users = User::lists('first_name');
-            $projects = Project::lists('client_name');
-            return View::make('project.assign')->with('user', $user)->with('projects', $projects);
+            return View::make('project.assign')
+                ->with('user', $user)
+                ->with('projects', $projects);
         }
-
-
-
-
-
 
     }
 
-    public function postAssign() {
+    /**
+      * Post data and assign user project
+      * POST /assign/user/{id}
+      *
+      * @return Response
+    **/
 
-        $rules = array(
-            'user'    => 'required',
-            'project' => 'required'
-        );
+    public function postAssign($id) {
 
-        $validator = Validator::make(Input::all(), $rules);
+        $user = User::find($id);
 
-        if ($validator->fails()) {
-           return Redirect::route('project-assign')->withErrors($validator);
-        } else {
+        if ($user) {
+            $user->assignProject(Input::get('project'));
 
-            //extra validation to check if user is fully booked.
-
-            // assign project to user
-
-            $user = User;
-
-            $user->assignRole(Input::get('project'));
-
+            return Redirect::to('/')->with('global', 'Project has been assigned');
         }
 
+        return Redirect::route('project-assign')->with('global', 'Something went wrong');
+
+    }
+
+
+    /**
+      * Need to un-assign project from user
+      * 
+      * GET /assign/user/{id}
+      * 
+      * @return Response
+    **/
+
+    public function unassignProject($id) {
+      
+      $user = User::find($id);
+
+
+      if ($user) {
+        $user->removeProject(Input::get('project'));
+      }
     }
 
 
@@ -81,6 +97,7 @@ class ProjectController extends \BaseController {
 	{
         return View::make('project.create');
     }
+    
 	/**
 	 * Store a newly created resource in storage.
 	 * POST /project
@@ -139,14 +156,15 @@ class ProjectController extends \BaseController {
 	/**
 	 * Display the specified resource.
 	 * GET /project/{id}
+     *
+     * @todo Might use for specific project details.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function show($id)
 	{
-
-
+      // project details will go here.
 	}
 
 	/**
@@ -176,7 +194,8 @@ class ProjectController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$project = Project::find($id);
+
 	}
 
 	/**
@@ -188,7 +207,32 @@ class ProjectController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$project = Project::find($id);
+
+        
 	}
 
+    /**
+     * Edits user in the admin level
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function editUser($id) {
+        $user = User::find($id);
+
+        return View::make('project.admin-user-edit')
+                 ->with('user', $user);
+    }
+
+    public function updateUser($id) {
+
+        $user = User::find($id);
+
+        $user->shift_hours   = Input::get('shift_hours');
+        $user->save();
+
+        return Redirect::to('/admin')
+            ->with('global', 'User has been updated.');
+    }
 }

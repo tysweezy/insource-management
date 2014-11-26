@@ -12,6 +12,7 @@
 */
 
 
+
 /**
  * Unauthenticated groups
  */
@@ -113,13 +114,42 @@ Route::group(array('before' => 'auth'), function() {
         'as'       => 'profile-edit-post',
         'uses'     => 'ProfileController@postEditProfile'
       ));
-  });
+
+
+      /**
+       * User status message -- post
+       */
+
+      Route::post('/user/{id}/status', array(
+          'as'      => 'post-status',
+          'uses'    => 'QaController@postStatus'
+      ));
+  }); // csrf
 
 
   Route::get('/', array(
       'as'     => 'home',
       'uses'   => 'ProjectController@index'
   ));
+
+
+    /**
+     * User status message -- GET
+     */
+
+    Route::get('/user/{id}/status', array(
+        'as'      => 'user-status',
+        'uses'    => 'QaController@status'
+    ));
+
+
+    /**
+      * Display all projects
+    **/
+    Route::get('/projects', array(
+       'as'     => 'projects-all',
+       'uses'   => 'ProjectController@all'
+    ));
 
   /**
    * Assign project -- before('role:admin')
@@ -197,6 +227,15 @@ Route::group(array('before' => 'auth'), function() {
         });
 
         /**
+         * Edit/modify user settings -- Admin level (GET)
+         */
+
+        Route::get('/admin/user/{id}/edit', array(
+           'as'   => 'admin-user-edit',
+           'uses' => 'ProjectController@editUser'
+        ));
+
+        /**
          * Create project -- GET
          */
 
@@ -220,6 +259,12 @@ Route::group(array('before' => 'auth'), function() {
            Route::post('/assign/user/{id}', array(
                'as'    => 'project-assign-post',
                'uses'  => 'ProjectController@postAssign'
+           ));
+
+
+           Route::post('/admin/user/{id}/edit', array(
+               'as'   => 'admin-user-edit-post',
+               'uses' => 'ProjectController@updateUser'
            ));
 
        });

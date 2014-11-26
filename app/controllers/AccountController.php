@@ -242,15 +242,5 @@ class AccountController extends BaseController {
             }*/
 
         }
-
-
-
-
-
-
-
-
-
-
     }
 }

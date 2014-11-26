@@ -27,6 +27,11 @@
 
                        @endif
 
+
+                      @if($user->status)
+                       <em class="status">"{{ $user->status  }}"</em>
+                      @endif
+
                         <div class="overview-actions pull-right">
 
                          @if(Auth::user()->hasRole('admin'))

@@ -49,6 +49,11 @@
                         </li>
                         <li><a href="{{ URL::route('profile-edit', [Auth::user()->username]) }} "><i class="fa fa-gear fa-fw"></i> Edit Profile</a>
                         </li>
+
+                        <li>
+                          <a href="/user/{{Auth::user()->id}}/status"><i class="fa fa-comment"></i> Add Status Message</a>
+                        </li>
+
                         <li>
                           <a href="{{ URL::route('account-change-password') }}"><i class="fa fa-key"></i> Change Password</a>
                         </li>
@@ -77,7 +82,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="/"><i class="fa fa-dashboard fa-fw"></i> Projects Overview</a>
+                            <a class="active" href="/"><i class="fa fa-dashboard fa-fw"></i> Activity</a> 
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
@@ -85,6 +90,10 @@
                         </li>
                         <li>
                             <a href=""><i class="fa fa-table fa-fw"></i> Caldendar</a>
+                        </li>
+
+                        <li>
+                          <a href="/user/{{Auth::user()->id}}/status"><i class="fa fa-comment"></i> Add Status Message</a>
                         </li>
 
                         @if (Auth::user()->hasRole('admin'))
