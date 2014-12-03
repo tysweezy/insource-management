@@ -17,7 +17,7 @@
                        <a href="/profile/{{$user->username}}" class="users-name">{{ $user->first_name }} {{ $user->last_name }}</a>
 
                        <!-- add logic -->
-                       @if($user->assigned_task_count < 5)
+                       @if(count($user->projects) < 5)
 
                           <span class="available">Available</span>
 

@@ -24,7 +24,12 @@
           <div class="col-md-4">
              <h4>Assigned Task Count</h4>
 
-             <p id="atc">{{ $user->assigned_task_count }}</p>
+             <p id="atc">
+               
+               
+                 {{ count($user->projects) }}
+               
+             </p>
           </div>
 
 

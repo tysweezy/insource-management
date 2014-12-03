@@ -55,7 +55,7 @@
                 <td>{{ $u->last_name  }}</td>
                 <td>{{ $u->username }}</td>
                 <td>{{ $u->email }}</td>
-                <td>{{ $u->assigned_task_count }}</td>
+                <td>{{ count($u->projects) }}</td>
                 <td>{{ $u->shift_hours }}</td>
                 <td><a href="admin/user/{{$u->id}}/edit" class="btn btn-warning">Edit</a></td>
 
