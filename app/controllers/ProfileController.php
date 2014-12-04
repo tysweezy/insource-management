@@ -10,10 +10,23 @@ class ProfileController extends BaseController {
       $user = $user->first();
 
         $projects = $user->projects;
+        
+        $project_task = $user->projectuser;
+
+        /*foreach ($project_task as $p) {
+          dd($p->id);
+        }*/
+
+        //dd($user->projectuser);
+      
+          //dd($user->projectuser['project_id']);
+        
 
       return View::make('profile.user')
                ->with('user', $user)
-               ->with('projects', $projects);
+               ->with('projects', $projects)
+               ->with('project_task', $project_task);
+             
     }
 
       return App::abort(404);

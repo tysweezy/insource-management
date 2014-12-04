@@ -59,7 +59,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     /*** projects ***/
 
     public function projects() {
-      return $this->belongsToMany('Project')->withTimestamps();
+      	
+      return $this->belongsToMany('Project')
+       				->withPivot('ot_hours')
+       				->withPivot('hours_spent')
+       				->withPivot('number_of_changes')
+       				->withPivot('hours_on_changes')
+       				->withTimestamps();
     }
 
     public function hasProject($name) {
@@ -79,4 +85,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function removeProject($project) {
         return $this->projects()->detach($project);
     }
+
+    // grab data from pivot table -- one-to-many
+    /*public function projectuser() {
+    	return $this->hasMany('ProjectUser', 'project_id', 'id');
+    }*/
 }

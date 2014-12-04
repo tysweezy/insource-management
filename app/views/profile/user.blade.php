@@ -54,6 +54,8 @@
         <!-- current project row -->
         <div class="row">
           <div class="col-lg-12">
+
+
             <h3>Current Projects</h3>
 
             <table class="table">
@@ -71,15 +73,17 @@
 
               <thead>
                @foreach($projects as $project)
+               
                 <tr>
                   <td>{{ $project->project_number }}</td>
                   <td>{{ $project->client_name }}</td>
-                  <td></td>
-                  <td>{{ $project->hours_spent }}</td>
-                  <td>{{ $project->number_of_changes }}</td>
-                  <td>{{ $project->hours_on_changes }}</td>
-                  <td>{{ $project->ot_hours }}</td>
+                  <td>N/A</td>
+                  <td>{{ $project->pivot->hours_spent }}</td>
+                  <td>{{ $project->pivot->number_of_changes }}</td>
+                  <td>{{ $project->pivot->hours_on_changes }}</td>
+                  <td>{{ $project->pivot->ot_hours }}</td>
                 </tr>
+               
                @endforeach
               </thead>
             </table>

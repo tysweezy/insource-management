@@ -12,7 +12,6 @@
 */
 
 
-
 /**
  * Unauthenticated groups
  */
