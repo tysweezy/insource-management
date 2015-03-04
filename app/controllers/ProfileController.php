@@ -13,15 +13,6 @@ class ProfileController extends BaseController {
         
         $project_task = $user->projectuser;
 
-        /*foreach ($project_task as $p) {
-          dd($p->id);
-        }*/
-
-        //dd($user->projectuser);
-      
-          //dd($user->projectuser['project_id']);
-        
-
       return View::make('profile.user')
                ->with('user', $user)
                ->with('projects', $projects)
@@ -72,5 +63,25 @@ class ProfileController extends BaseController {
 
         }
  }
+
+ /**
+   * Edit projects and project meta data
+  **/
+  public function editProjectData($username) {
+    $user = User::where('username', '=', $username);
+
+    if ($user->count()) {
+      $user = $user->first();
+
+      $projects = $user->projects;
+        
+      $project_task = $user->projectuser;
+
+      return View::make('profile.editproject')
+               ->with('user', $user)
+               ->with('projects', $projects)
+               ->with('project_task', $project_task);
+    }
+  }
 
 }

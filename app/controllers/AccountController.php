@@ -232,9 +232,12 @@ class AccountController extends BaseController {
 
         if ($user->count()) {
 
+
             $projects = $user->first()->projects;
 
-            return View::make('project.show')->with('projects', $projects);
+            $user = $user->first();
+
+            return View::make('project.show')->with('projects', $projects)->with('user', $user);
 
             /*foreach($user->first()->projects as $project) {
                 echo $project->id . '<br/>' . $project->client_name . '<hr />';

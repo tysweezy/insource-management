@@ -31,6 +31,15 @@
 
      <br/>
 
+    <div class="input-group">
+      <label for="deadline">Deadline</label>
+      <input class="datepicker form-control" name="deadline">
+
+      
+    </div>
+    
+    <br />
+
      <div class="input-group">
        {{ Form::submit('Assign Project', array('class' => 'btn btn-primary'))  }}
      </div>

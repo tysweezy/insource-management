@@ -46,7 +46,13 @@
           <div class="col-md-4">
             <h4>Current Status</h4>
 
-            <p id="work-status">Fully Booked</p>
+            <p id="work-status">
+              @if (count($user->projects) < 5)
+                Available
+              @else 
+                Fully Booked
+              @endif
+            </p>
           </div>
 
         </div><!-- /row -->

@@ -46,9 +46,9 @@
 
 
              {{ Form::label('ot_hours', 'OT Hours') }}
-             {{ Form::text('ot_hours', null, array('class' => 'form-control')) }}
+             {{ Form::text('ot_hours', null, array('class' => 'form-control')) }} <br>
 
-             {{ Form::submit("Edit Project", array('class' => 'btn btn-primary'))  }}
+             {{ Form::submit("Edit Project", array('class' => 'btn btn-primary'))  }} <br><br>
 
 
 

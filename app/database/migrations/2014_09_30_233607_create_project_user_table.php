@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class ProjectUserTable extends Migration {
+class CreateProjectUserTable extends Migration {
 
 	/**
 	 * Run the migrations.

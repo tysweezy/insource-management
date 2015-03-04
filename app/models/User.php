@@ -30,12 +30,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getAuthPassword() {
 		return $this->password;
 	}
-     
-     
 
+
+  public function scopeSearch($query, $search)
+  { 
+    return $query->where('first_name', 'LIKE', "%$search%"); 
+  }
+
+     
 	/*** Roles ***/
 
-    public function roles() {
+  public function roles() {
 		return $this->belongsToMany('Role')->withTimestamps();
 	}
 

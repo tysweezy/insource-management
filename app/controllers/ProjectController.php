@@ -9,11 +9,21 @@ class ProjectController extends \BaseController {
 	 * @return Response
 	 */
 	public function index()
-    {
-        $users = User::orderBy('assigned_task_count', 'ASC')->paginate(5);
+  {
 
 
-        return View::make('home')->with('users', $users);
+    $query = Input::get('q');
+
+
+    if ($query) {
+      $users = User::search($query)->paginate(5);
+    
+    } else {
+      $users = User::orderBy('assigned_task_count', 'ASC')->paginate(5);
+    }
+
+    return View::make('home')->with('users', $users);
+    
 	}
 
     
@@ -21,11 +31,11 @@ class ProjectController extends \BaseController {
       * Display all projects -- project overview
       * @return Response
     **/
-    public function all() {
+    /*public function all() {
         return "Projects page";
-    }
+    }*/
 
-    /**
+    /**    
      * Assign project page.
      * GET /assign/user/{id}
      *
@@ -80,10 +90,15 @@ class ProjectController extends \BaseController {
       
       $user = User::find($id);
 
-
       if ($user) {
         $user->removeProject(Input::get('project'));
+
+
+        return Redirect::to('/user/'. $user->username . '/projects')->with('success', 'Project Unassigned');
       }
+
+      return Redirect::to('/user/'. $user->username . '/projects')->with('error', 'Something went wrong.');
+      
     }
 
 
@@ -95,8 +110,8 @@ class ProjectController extends \BaseController {
 	 */
 	public function create()
 	{
-        return View::make('project.create');
-    }
+    return View::make('project.create');
+  }
     
 	/**
 	 * Store a newly created resource in storage.
@@ -112,7 +127,7 @@ class ProjectController extends \BaseController {
             'client_name'    => 'required',
             'project_number' => 'required'
 
-        );
+    );
 
 
         $validator = Validator::make(Input::all(), $rules);
@@ -165,7 +180,7 @@ class ProjectController extends \BaseController {
 	public function show($id)
 	{
       // project details will go here.
-	}
+	} 
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -176,7 +191,7 @@ class ProjectController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$project = Project::where('id', '=', $id);
+		  $project = Project::where('id', '=', $id);
 
         if ($project->count()) {
             $project->first();
@@ -208,8 +223,13 @@ class ProjectController extends \BaseController {
 	public function destroy($id)
 	{
 		$project = Project::find($id);
+    
 
-        
+    if ($project->delete()) { 
+
+      return Redirect::to('/admin')->with('success', 'Project deleted');
+
+    }
 	}
 
     /**
@@ -234,5 +254,37 @@ class ProjectController extends \BaseController {
 
         return Redirect::to('/admin')
             ->with('global', 'User has been updated.');
+    }
+
+    public function exportExcel()
+    {
+      $excel = App::make('excel');
+      
+      Excel::create('projects', function($excel) {
+        $projects = Project::all()->toArray();
+
+        $excel->sheet('project', function($sheet) use ($projects) {
+          $sheet->fromArray($projects, null, 'A1', true);
+
+        });
+      })->export('xls');
+
+      return Redirect::to('/admin');
+    }
+
+    public function qaExport()
+    {
+      $excel = App::make('excel');
+
+      Excel::create('qa', function($excel) {
+        $users = User::all()->toArray();
+
+        $excel->sheet('qa', function($sheet) use ($users) {
+          $sheet->fromArray($users, null, 'A1', true);
+        });
+      })->export('xls');
+
+
+      return Redirect::to('/admin');
     }
 }

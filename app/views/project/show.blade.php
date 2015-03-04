@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-lg-12">
 
-    <h1 class="page-header">Projects</h1>
+    <h1 class="page-header">{{ $user->first_name }}'s Projects</h1>
 
 
       @if($projects->count() == 0)
@@ -39,7 +39,22 @@
            <td>{{ $project->number_of_changes }}</td>
            <td>{{ $project->hours_on_changes }}</td>
            <td><a href="/project/{{ $project->id }}/edit">Edit</a></td>
-           <td><a href="">More Info</a></td>
+          
+          @if (Auth::user()->hasRole('admin'))
+
+           <td>
+              {{ Form::open(['method' => 'PUT', 'url' => 'unassign/user/' . $user->id]) }}
+                 <!--<input type="hidden" name="project" value="{{ $project->client_name }}">-->
+
+                 {{ Form::hidden('project', $project->client_name) }}
+
+                 {{ Form::submit('Unassign Project', ['class' => 'btn btn-xs btn-danger']) }}
+
+                 <!--<button class="btn btn-xs btn-danger" type="submit" name="project" value="{{ $project->client_name }}">Unassign Project</button>-->
+              {{ Form::close() }}
+           </td>
+
+           @endif
         </tr>
       @endforeach
 

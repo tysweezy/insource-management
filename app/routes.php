@@ -131,6 +131,12 @@ Route::group(array('before' => 'auth'), function() {
       'uses'   => 'ProjectController@index'
   ));
 
+  // GET -- Calendar
+  Route::get('/calendar', array(
+    'as'    => 'calendar-main',
+    'uses'  => 'CalendarController@main'
+  ));
+
 
     /**
      * User status message -- GET
@@ -186,6 +192,12 @@ Route::group(array('before' => 'auth'), function() {
     'uses'   => 'ProfileController@user'
    ));
 
+
+  Route::get('/profile/{username}/data/edit', array(
+    'as'    => 'profile-edit-project-data',
+    'uses'  => 'ProfileController@editProjectData'
+  ));
+
   // edit profile
   Route::get('/profile/{username}/edit', array(
     'as'       => 'profile-edit',
@@ -215,6 +227,16 @@ Route::group(array('before' => 'auth'), function() {
 
     Route::group(array('before' => 'role:admin'), function() {
 
+        // excel
+        Route::get('/excel/project/export', 'ProjectController@exportExcel');
+
+        // qa excel export
+        Route::get('/excel/qa/export', 'ProjectController@qaExport');
+
+        Route::delete('/project/{id}', 'ProjectController@destroy');
+
+        Route::put('/unassign/user/{id}', 'ProjectController@unassignProject'); 
+
         Route::get('/admin', function () {
 
             $users    = User::all();
@@ -242,6 +264,9 @@ Route::group(array('before' => 'auth'), function() {
             'as'     => 'project-create',
             'uses'   => 'ProjectController@create'
         ));
+
+
+
 
 
        Route::group(array('before' => 'csrf'), function() {

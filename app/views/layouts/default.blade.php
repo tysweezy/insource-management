@@ -11,6 +11,10 @@
 
   {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
 
+  {{ HTML::style('bower_components/fullcalendar/dist/fullcalendar.min.css') }}
+
+  {{ HTML::style('bower_components/bootstrap-datepicker/css/datepicker3.css') }}
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -51,6 +55,10 @@
                         </li>
 
                         <li>
+                            <a href="/user/{{ Auth::user()->id}}/tasks"><i class="fa fa-check-square-o"></i> My Tasks</a>
+                        </li>
+
+                        <li>
                           <a href="/user/{{Auth::user()->id}}/status"><i class="fa fa-comment"></i> Add Status Message</a>
                         </li>
 
@@ -71,25 +79,38 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
+                        {{ Form::open(['method' => 'GET', 'url' => '/']) }}
                             <div class="input-group custom-search-form">
-                                <input type="text" id="main-search" class="form-control" placeholder="Search...">
+                                
+                               
+                                <!--<input type="text" id="main-search" class="form-control" placeholder="Search...">-->
+                                
+                                {{ Form::text('q', null, ['placeholder' => 'Search...', 'class' => 'form-control', 'id' => 'main-search', 'value' => Input::old('q')]) }}
+
                                 <span class="input-group-btn">
-                                <button id="searchButton" class="btn btn-default" type="button">
+                                <button id="searchButton" class="btn btn-default" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
+                               
                             </span>
                             </div>
+
+                        {{ Form::close() }}
                             <!-- /input-group -->
                         </li>
                         <li>
                             <a class="active" href="/"><i class="fa fa-dashboard fa-fw"></i> Activity</a> 
                         </li>
+
                         <li>
+                            <a href="/user/{{ Auth::user()->id}}/tasks"><i class="fa fa-check-square-o"></i> My Tasks</a>
+                        </li>
+                        <!--<li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</a>
 
-                        </li>
+                        </li> -->
                         <li>
-                            <a href=""><i class="fa fa-table fa-fw"></i> Caldendar</a>
+                            <a href="/calendar"><i class="fa fa-table fa-fw"></i> Calendar</a>
                         </li>
 
                         <li>
@@ -126,9 +147,15 @@
 <div id="page-wrapper">
 
   @if(Session::has('global'))
-    {{ Session::get('global') }}
+    <div class="alert alert-info">{{ Session::get('global') }}</div>
+  @endif
 
-    <br />
+  @if (Session::has('error'))
+    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+  @endif
+
+  @if (Session::has('success'))
+    <div class="alert alert-success">{{ Session::get('success') }}</div>
   @endif
 
   @yield('content')
@@ -144,6 +171,18 @@
 {{ HTML::script('js/plugins/metisMenu/metisMenu.min.js') }}
 
 {{ HTML::script('js/sb-admin-2.js') }}
+
+{{ HTML::script('bower_components/moment/min/moment.min.js') }}
+
+{{ HTML::script('bower_components/fullcalendar/dist/fullcalendar.js') }}
+
+{{ HTML::script('bower_components/fullcalendar/dist/gcal.js') }}
+
+{{ HTML::script('bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js') }}
+
+{{ HTML::script('js/app.js') }}
+
+
 
 </body>
 </html>
