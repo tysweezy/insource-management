@@ -8,47 +8,60 @@
 
          {{ Form::model($project, array('route' => 'project-edit'), $project->id) }}
 
+            <div class="form-group">
+             {{ Form::label('requested_month', 'Requested Month')  }}
+             {{ Form::text('requested_month', null, array('class' => 'form-control')) }}
 
-       {{ Form::label('requested_month', 'Requested Month')  }}
-
-       {{ Form::text('requested_month', null, array('class' => 'form-control')) }}
-
+            </div>
+            
+            <div class="form-group">
              {{ Form::label('requester_name', 'Requester Name')  }}
              {{ Form::text('requester_name', null, array('class' => 'form-control'))  }}
+            </div>
 
-
-
+            <div class="form-group">
              {{ Form::label('client_name', 'Client Name')  }}
              {{ Form::text('client_name', null, array('class' => 'form-control')) }}
+            </div>
 
-
+            <div class="form-group">
              {{ Form::label('project_number', 'Project Number') }}
              {{ Form::text('project_number', null, array('class' => 'form-control'))  }}
+            </div>
 
-
-
+            <div class="form-group">
              {{ Form::label('question_count', 'Question Count') }}
              {{ Form::text('question_count', null, array('class' => 'form-control')) }}
+            </div>
 
-
+            <div class="form-group">
              {{ Form::label('department', 'Department')  }}
              {{ Form::text('department', null, array('class' => 'form-control')) }}
+            </div>
 
-
+            <div class="form-group">
              {{ Form::label('hours_spent', 'Hours Spent') }}
              {{ Form::text('hours_spent', null, array('class' => 'form-control')) }}
+            </div>
 
+            <div class="form-group">
              {{ Form::label('number_of_changes', 'Number of Changes') }}
              {{ Form::text('number_of_changes', null, array('class' => 'form-control'))  }}
-
+            </div>
+  
+            <div class="form-group">
              {{ Form::label('hours_on_changes', 'Hours on Changes') }}
              {{ Form::text('hours_on_changes', null, array('class' => 'form-control')) }}
+            </div>
 
-
+            <div class="form-group">
              {{ Form::label('ot_hours', 'OT Hours') }}
-             {{ Form::text('ot_hours', null, array('class' => 'form-control')) }} <br>
+             {{ Form::text('ot_hours', null, array('class' => 'form-control')) }} 
+            </div>
 
-             {{ Form::submit("Edit Project", array('class' => 'btn btn-primary'))  }} <br><br>
+            <div class="form-group">
+             {{ Form::submit("Edit Project", array('class' => 'btn btn-primary'))  }}
+            </div> 
 
 
 

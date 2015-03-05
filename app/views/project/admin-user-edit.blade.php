@@ -10,7 +10,15 @@
 
 
          {{ Form::label('shift_hours', 'Shift Hours') }}
-         {{ Form::text('shift_hours', null, ['class' => 'form-control']) }}
+
+		<select name="shift_hours" class="form-control">
+			<option value="">---</option>
+			<option value="8am - 5pm">Normal Shift (8am - 5pm)</option>
+			<option value="2:30pm - 11:30pm">Night Shift (2:30pm - 11:30pm)</option>
+			<option value="1am - 10am">UK Shift (1am - 10am)</option>
+		</select>
+
+         <!--{{ Form::text('shift_hours', null, ['class' => 'form-control']) }}-->
 
          <br/>
 

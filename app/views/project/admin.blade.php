@@ -32,7 +32,7 @@
 
     <div class="tab-content">
       <div class="tab-pane active in" id="qa">
-        <table class="table table-striped">
+        <table class="table table-striped" id="qa-table">
           <thead>
             <tr>
               <th></th>
@@ -103,7 +103,7 @@
        @if ($projects->count() == 0)
          <br/><p>Not a single project exists. You can create one by clicking the Create Project button.</p>
        @else
-        <table class="table table-striped" style="font-size: .9em;">
+        <table class="table table-striped" style="font-size: .9em;" id="project-table">
           <thead>
             <tr>
               <th>Month</th>

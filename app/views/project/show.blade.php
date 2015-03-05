@@ -23,6 +23,7 @@
             <th>Hours Spent</th>
             <th># of Changes</th>
             <th>Hours on Changes</th>
+            <th></th>
 
           </tr>
         </thead>
@@ -46,7 +47,7 @@
               {{ Form::open(['method' => 'PUT', 'url' => 'unassign/user/' . $user->id]) }}
                  <!--<input type="hidden" name="project" value="{{ $project->client_name }}">-->
 
-                 {{ Form::hidden('project', $project->client_name) }}
+                 {{ Form::hidden('project', $project->id) }}
 
                  {{ Form::submit('Unassign Project', ['class' => 'btn btn-xs btn-danger']) }}
 

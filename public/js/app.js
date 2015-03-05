@@ -17,7 +17,21 @@
 
 $(".datepicker").datepicker("update", new Date());
 
-// delete project
+
+//$('#qa-table').DataTable();
+//$('#project-table').DataTable();
+
+
+    var url = window.location.href;
+    $('#side-menu li a[href="'+url+'"]').addClass('active');
+
+    $('#side-menu li a').filter(function() {
+      return this.href == url;
+    }).addClass('active');
+
+
+
+  
 
 
 })();

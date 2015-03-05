@@ -2,6 +2,14 @@ $(function() {
 
     $('#side-menu').metisMenu();
 
+/*setTimeout(function() {
+  $('.alert').fadeOut();
+}, 3000);*/
+
+$('button.close').click(function() {
+    $('.alert').slideUp();
+});
+
 });
 
 //Loads the correct sidebar on window load,

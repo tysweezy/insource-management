@@ -9,11 +9,13 @@
 
   {{ HTML::style('css/sb-admin-2.css') }}
 
+  {{ HTML::style('css/plugins/dataTables.bootstrap.css') }}
+
   {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
 
   {{ HTML::style('bower_components/fullcalendar/dist/fullcalendar.min.css') }}
 
-  {{ HTML::style('bower_components/bootstrap-datepicker/css/datepicker3.css') }}
+  {{ HTML::style('bower_components/bootstrap-datepicker/css/datepicker3.css') }} 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -99,7 +101,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="/"><i class="fa fa-dashboard fa-fw"></i> Activity</a> 
+                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> Activity</a> 
                         </li>
 
                         <li>
@@ -147,15 +149,30 @@
 <div id="page-wrapper">
 
   @if(Session::has('global'))
-    <div class="alert alert-info">{{ Session::get('global') }}</div>
+    <div class="alert alert-info">
+        {{ Session::get('global') }}
+
+        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
   @endif
 
   @if (Session::has('error'))
-    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+    <div class="alert alert-danger">
+
+        {{ Session::get('error') }}
+
+        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+    </div>
   @endif
 
   @if (Session::has('success'))
-    <div class="alert alert-success">{{ Session::get('success') }}</div>
+    <div class="alert alert-success" id="success-message">
+
+        {{ Session::get('success') }}
+
+      <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
   @endif
 
   @yield('content')
@@ -167,6 +184,10 @@
 {{ HTML::script('js/jquery-1.11.0.js') }}
 
 {{ HTML::script('js/bootstrap.min.js') }}
+
+{{ HTML::script('js/plugins/dataTables/jquery.dataTables.js') }}
+
+{{ HTML::script('js/plugins/dataTables/dataTables.bootstrap.js') }}
 
 {{ HTML::script('js/plugins/metisMenu/metisMenu.min.js') }}
 

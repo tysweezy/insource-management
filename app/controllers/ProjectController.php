@@ -90,14 +90,14 @@ class ProjectController extends \BaseController {
       
       $user = User::find($id);
 
-      if ($user) {
-        $user->removeProject(Input::get('project'));
+    
+      $user->removeProject(Input::get('project'));
 
 
-        return Redirect::to('/user/'. $user->username . '/projects')->with('success', 'Project Unassigned');
-      }
+      return Redirect::to('/user/'. $user->username . '/projects')->with('success', 'Project Unassigned');
+      
 
-      return Redirect::to('/user/'. $user->username . '/projects')->with('error', 'Something went wrong.');
+  
       
     }
 

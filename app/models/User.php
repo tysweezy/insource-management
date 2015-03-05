@@ -91,6 +91,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->projects()->detach($project);
     }
 
+    public function tasks()
+    {
+      return $this->hasMany('Task');
+    }
+
     // grab data from pivot table -- one-to-many
     /*public function projectuser() {
     	return $this->hasMany('ProjectUser', 'project_id', 'id');

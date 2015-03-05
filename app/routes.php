@@ -123,6 +123,16 @@ Route::group(array('before' => 'auth'), function() {
           'as'      => 'post-status',
           'uses'    => 'QaController@postStatus'
       ));
+
+
+      Route::post('/user/{id}/tasks', 'TasksController@store');
+
+      // edit task
+      Route::post('user/{id}/tasks/edit/{task}', array(
+        'as'    => 'edit-task',
+        'uses'  => 'TasksController@update'
+      ));
+
   }); // csrf
 
 
@@ -137,6 +147,13 @@ Route::group(array('before' => 'auth'), function() {
     'uses'  => 'CalendarController@main'
   ));
 
+  // user custom tasks
+  Route::get('/user/{id}/tasks', 'TasksController@index');
+
+      Route::get('user/{id}/tasks/edit/{task}', array(
+        'as'    => 'edit-task-get',
+        'uses'  => 'TasksController@edit'
+      ));
 
     /**
      * User status message -- GET
