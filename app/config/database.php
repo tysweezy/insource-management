@@ -64,11 +64,11 @@ return array(
 		),
 
 		'pgsql' => array(
-			'driver'   => 'mysql',
-			'host'     => 'ec2-54-243-42-236.compute-1.amazonaws.com',
-			'database' => 'd5i17o0jluajp9',
-			'username' => 'kqhebutfqyevep',
-			'password' => 'MXyTtWLZtqmJIQ3zUwY9d3JdHT',
+			'driver'   => 'pgsql',
+			'host'     => '',
+			'database' => '',
+			'username' => '',
+			'password' => '',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
